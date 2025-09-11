@@ -1,0 +1,23 @@
+# Node
+node_modules/
+dist/
+coverage/
+
+# Env and local
+.env
+.env.*.local
+
+# Temp outputs
+tmp/
+*.tmp
+*.log
+
+# OS
+.DS_Store
+
+# yarn
+.yarn
+.pnp.*
+
+# cache
+.cache

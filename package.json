@@ -1,0 +1,39 @@
+{
+	"name": "scr-image-tagging",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Script project for automated image tagging (TypeScript + tsup).",
+	"license": "UNLICENSED",
+	"type": "module",
+	"main": "dist/index.js",
+	"packageManager": "yarn@4.9.4",
+	"scripts": {
+		"dev": "bun run --watch src/index.ts",
+		"build": "tsup",
+		"check-types": "tsc --noEmit",
+		"lint": "oxlint --deny-warnings && eslint . --max-warnings 0",
+		"test": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"format": "bun bin/format.ts write",
+		"format:ci": "bun bin/format.ts check",
+		"clean": "rm -rf dist coverage"
+	},
+	"devDependencies": {
+		"@types/bun": "1.2.21",
+		"@types/node": "24.3.1",
+		"@vitest/coverage-v8": "3.2.4",
+		"eslint": "9.34.0",
+		"oxlint": "1.14.0",
+		"prettier": "3.6.2",
+		"tsup": "8.5.0",
+		"typescript": "5.9.2",
+		"typescript-eslint": "8.42.0",
+		"vite-tsconfig-paths": "5.1.4",
+		"vitest": "3.2.4",
+		"yargs": "18.0.0"
+	},
+	"volta": {
+		"node": "24.7.0",
+		"yarn": "4.9.4"
+	}
+}
