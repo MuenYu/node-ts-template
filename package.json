@@ -1,8 +1,8 @@
 {
-	"name": "scr-image-tagging",
+  "name": "node-ts-template",
 	"version": "0.1.0",
 	"private": true,
-	"description": "Script project for automated image tagging (TypeScript + tsup).",
+  "description": "Template for Node.js + TypeScript with Yarn, Bun runner, ESLint, Oxlint, Prettier, Vitest, and tsup.",
 	"license": "UNLICENSED",
 	"type": "module",
 	"main": "dist/index.js",

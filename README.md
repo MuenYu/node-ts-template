@@ -1,27 +1,59 @@
-# scr-image-tagging
+# Node TS Template (Bun + Yarn)
 
-Empty TypeScript-ready project aligned with svc-lab tooling (Bun, Oxlint, ESLint, Prettier, Vitest, tsup).
+TypeScript template for Node.js aligned with modern tooling: Yarn (package manager), Bun (script runner), TypeScript, tsup, Vitest, ESLint, Oxlint, and Prettier. Use this as a starting point for new Node projects.
 
 ## Requirements
+- Node.js 24+ (Volta pin set to `24.7.0` in `package.json`)
+- Yarn 4.x (declared via `packageManager` in `package.json`)
+- Bun 1.2.x (used to run fast scripts like dev/format)
 
-- Node.js 24+ (Volta pins to 24.7.0)
-- Bun 1.2.x installed (for `bun run`)
+## Using This Template
+- Click “Use this template” (GitHub) or clone and change `name`/`description` in `package.json`.
+- Install dependencies: `yarn install`
+- Start developing: `yarn dev`
 
-## Getting Started
+## Scripts
+- `yarn dev` — Runs `src/index.ts` in watch mode via Bun.
+- `yarn build` — Bundles to `dist/` using tsup targeting `es2024`.
+- `yarn check-types` — Type-checks with `tsc --noEmit`.
+- `yarn lint` — Oxlint first, then ESLint (flat config, TS-aware).
+- `yarn test` — Vitest with V8 coverage config available.
+- `yarn test:coverage` — Runs tests and produces coverage.
+- `yarn format` — Formats with Prettier using a Bun helper.
+- `yarn format:ci` — Checks formatting (no write).
+- `yarn clean` — Removes `dist` and `coverage`.
 
-- Install dependencies: `yarn` or `npm install`
-- Development (watch): `yarn dev` (Bun-powered watch)
-- Type-check: `yarn check-types`
-- Lint: `yarn lint` (Oxlint + ESLint)
-- Test: `yarn test`
-- Build: `yarn build` (outputs to `dist/`)
-- Format: `yarn format` (Bun runner + Prettier cache)
+## Configuration Overview
+- `tsconfig.json`
+  - `target: ES2024`, `moduleResolution: Bundler`.
+  - Path alias: `@/*` -> `src/*`.
+- `eslint.config.mjs`
+  - ESLint flat config + `typescript-eslint` recommended.
+  - `oxlint` runs before ESLint; ESLint enforces zero warnings.
+- `vitest.config.ts`
+  - `vite-tsconfig-paths` for `@/*` alias resolution.
+  - V8 coverage; ignores `dist/`, `coverage/`, configs.
+- `tsup.config.ts`
+  - Entry `src/index.ts`, `target: es2024`, inline source maps, minified output.
+- Prettier
+  - `.prettierrc.json` with tabs, single quotes, width 140.
+  - `.prettierignore` excludes `dist/`, `coverage/`, `node_modules/`.
+- Version management
+  - `package.json` has `"packageManager": "yarn@4.x"`.
+  - Volta pins Node and Yarn in `"volta"` to ensure consistent engines.
 
-Project files to note:
+## Project Structure
+- `src/` — Application source (entry: `src/index.ts`).
+- `bin/format.ts` — Bun-powered Prettier wrapper with caching to `.cache/`.
+- `dist/` — Build output (generated).
+- `coverage/` — Test coverage (generated).
 
-- `tsconfig.json` — TS setup with path alias `@/*` -> `src/*`
-- `eslint.config.mjs` — ESLint flat config for TS (used after Oxlint)
-- `vitest.config.ts` — Vitest with tsconfig path support
-- `tsup.config.ts` — Build config
-- `.prettierrc.json` — Prettier basic settings for scripts
-- `src/index.ts` — Empty entry point
+## Conventions
+- Use the `@/*` import alias for files under `src/`.
+- Keep code warning-free: `yarn lint` denies warnings (`--max-warnings 0`).
+- Prefer unit tests with Vitest; use coverage locally or in CI as needed.
+
+## Notes
+- Bun is used to run scripts for speed. Package management is done by Yarn.
+- To avoid Bun, you can switch `dev`/`format` scripts to Node-based alternatives.
+- The Prettier cache directory `.cache/` is ignored via `.gitignore`.
