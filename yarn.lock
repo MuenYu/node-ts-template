@@ -2258,6 +2258,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jiti@npm:^2.6.1":
+  version: 2.6.1
+  resolution: "jiti@npm:2.6.1"
+  bin:
+    jiti: lib/jiti-cli.mjs
+  checksum: 10c0/79b2e96a8e623f66c1b703b98ec1b8be4500e1d217e09b09e343471bbb9c105381b83edbb979d01cef18318cc45ce6e153571b6c83122170eefa531c64b6789b
+  languageName: node
+  linkType: hard
+
 "joycon@npm:^3.1.1":
   version: 3.1.1
   resolution: "joycon@npm:3.1.1"
@@ -2630,6 +2639,7 @@ __metadata:
     "@types/yargs": "npm:^17.0.33"
     "@vitest/coverage-v8": "npm:^3.2.4"
     eslint: "npm:^9.37.0"
+    jiti: "npm:^2.6.1"
     oxlint: "npm:^1.19.0"
     prettier: "npm:^3.6.2"
     tsup: "npm:^8.5.0"
