@@ -4,9 +4,9 @@ TypeScript template for Node.js aligned with modern tooling: Yarn (package manag
 
 ## Requirements
 
-- Node.js 24+ (Volta pin set to `24.7.0` in `package.json`)
-- Yarn 4.x (declared via `packageManager` in `package.json`)
-- TSX 4.x (installed as a dev dependency for TypeScript-first workflows)
+- Node.js (pinned via Volta for consistent runtime)
+- Yarn (managed through the `packageManager` field and Volta pin)
+- TSX (installed as a dev dependency for TypeScript-first workflows)
 
 ## Using This Template
 
@@ -24,27 +24,29 @@ TypeScript template for Node.js aligned with modern tooling: Yarn (package manag
 - `yarn test:coverage` — Runs tests and produces coverage.
 - `yarn format` — Formats with Prettier using a Node helper script.
 - `yarn format:ci` — Checks formatting (no write).
-- `yarn clean` — Removes `dist` and `coverage`.
+- `yarn clean` — Removes `dist`, `coverage`, and `node_modules`.
 
 ## Configuration Overview
 
 - `tsconfig.json`
-  - `target: ES2024`, `moduleResolution: Bundler`.
+  - `target: ES2024`, `module: ESNext`, `moduleResolution: Bundler`.
+  - `allowImportingTsExtensions` enabled for flexible module resolution.
   - Path alias: `@/*` -> `src/*`.
 - `eslint.config.mjs`
   - ESLint flat config + `typescript-eslint` recommended.
   - `oxlint` runs before ESLint; ESLint enforces zero warnings.
 - `vitest.config.ts`
   - `vite-tsconfig-paths` for `@/*` alias resolution.
-  - V8 coverage; ignores `dist/`, `coverage/`, configs.
+  - Vitest runs with `globals: true`, `clearMocks: true`, and an `esbuild` target of `es2024`.
+  - V8 coverage; ignores transpiled output, coverage data, and project config files.
 - `tsup.config.ts`
-  - Entry `src/index.ts`, `target: es2024`, inline source maps, minified output.
+  - Entry `src/index.ts`, `platform: node`, `target: es2024`, inline source maps, minified output, cleans `dist/` before each build.
 - Prettier
   - `.prettierrc.json` with tabs, single quotes, width 140.
   - `.prettierignore` excludes `dist/`, `coverage/`, `node_modules/`.
 - Version management
-  - `package.json` has `"packageManager": "yarn@4.x"`.
-  - Volta pins Node and Yarn in `"volta"` to ensure consistent engines.
+  - `package.json` sets the Yarn Berry `packageManager` metadata.
+  - Volta pins Node and Yarn versions in `"volta"` to ensure consistent engines.
 
 ## Project Structure
 

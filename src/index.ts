@@ -1,5 +1,5 @@
 // You can start writing your code here
-// The code below is for testing Typescript setup and debugging
+// The code below is for testing Typescript setup and debugger
 
 interface User {
 	name: string;
