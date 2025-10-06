@@ -26,32 +26,10 @@ TypeScript template for Node.js aligned with modern tooling: Yarn (package manag
 - `yarn format:ci` — Checks formatting (no write).
 - `yarn clean` — Removes `dist`, `coverage`, and `node_modules`.
 
-## Configuration Overview
-
-- `tsconfig.json`
-  - `target: ES2024`, `module: ESNext`, `moduleResolution: Bundler`.
-  - `allowImportingTsExtensions` enabled for flexible module resolution.
-  - Path alias: `@/*` -> `src/*`.
-- `eslint.config.mjs`
-  - ESLint flat config + `typescript-eslint` recommended.
-  - `oxlint` runs before ESLint; ESLint enforces zero warnings.
-- `vitest.config.ts`
-  - `vite-tsconfig-paths` for `@/*` alias resolution.
-  - Vitest runs with `globals: true`, `clearMocks: true`, and an `esbuild` target of `es2024`.
-  - V8 coverage; ignores transpiled output, coverage data, and project config files.
-- `tsup.config.ts`
-  - Entry `src/index.ts`, `platform: node`, `target: es2024`, inline source maps, minified output, cleans `dist/` before each build.
-- Prettier
-  - `.prettierrc.json` with tabs, single quotes, width 140.
-  - `.prettierignore` excludes `dist/`, `coverage/`, `node_modules/`.
-- Version management
-  - `package.json` sets the Yarn Berry `packageManager` metadata.
-  - Volta pins Node and Yarn versions in `"volta"` to ensure consistent engines.
-
 ## Project Structure
 
 - `src/` — Application source (entry: `src/index.ts`).
-- `bin/format.ts` — Node-based Prettier wrapper with caching to `.cache/`.
+- `bin` - helper scripts for engineering tasks (e.g., Prettier).
 - `dist/` — Build output (generated).
 - `coverage/` — Test coverage (generated).
 

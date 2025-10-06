@@ -6,10 +6,10 @@ export default defineConfig({
 	test: {
 		clearMocks: true,
 		globals: true,
-		coverage: {
-			provider: 'v8',
-			exclude: ['node_modules', 'dist', 'coverage', 'vitest.config.ts', 'eslint.config.mjs', 'tsup.config.ts'],
-		},
+			coverage: {
+				provider: 'v8',
+				exclude: ['node_modules', 'dist', 'coverage', 'vitest.config.ts', 'eslint.config.ts', 'tsup.config.ts'],
+			},
 	},
 	plugins: [tsconfigPaths()],
 });
